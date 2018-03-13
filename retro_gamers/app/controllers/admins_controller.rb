@@ -43,7 +43,7 @@ end
 #////////////////////////////////////////////////////
       private
       def admin_params
-        params.require(:admin).permit(:name, :password)
+        params.require(:admin).permit(:name, :password, :game_id)
       end
 
 end

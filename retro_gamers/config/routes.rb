@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :users
   resources :admins
   resources :games
-  
+      get "admins/:id/games", to: 'games#admins_by_games'
+
 end

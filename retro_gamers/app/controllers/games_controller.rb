@@ -10,6 +10,10 @@ class GamesController < ApplicationController
     render json: game
 
   end
+   def admins_by_games 
+    games = Game.find(params[:id])
+    render json: games.admins
+  end
 # ////////////////////////////////////////////////////////////////
 
      

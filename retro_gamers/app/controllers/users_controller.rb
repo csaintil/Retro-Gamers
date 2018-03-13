@@ -1,52 +1,5 @@
 class UsersController < ApplicationController
-  # def index
-  #   users = User.all
-  #   render json: users
-  # end
-
-  # def show 
-  #   user = User.find(params[:id])
-  #   render json: user
-
-  # end
-# ////////////////////////////////////////////////////////////////
-
-     
-#        def create 
-#         user = User.create!(user_params)
-#         render json: user
-#        end
-
-# # //////////////////////////////////////////////////////////////////////////
-
-  
-#       def update
-#       user = User.find(params[:id])
-#       user.update!(user_params)
-#       render json: user
-
-#       end
-
-
-# # /////////////////////////////////////////////////////////////////////////////
-
-#       def destroy
-#       user = User.find(params[:id])
-#       user.destroy!
-#       render json: user
-#       render plain: "Your account has been deactivated "
-#       end
-
-
-
-
-
-# #////////////////////////////////////////////////////
-#       private
-#       def user_params
-#         params.require(:user).permit(:username, :img_url, :password, :DOB)
-#       end
-def index
+   def index
     puts 'called'
     session[:session_token] = 3
     render json: [1, 2, 3, 4]
@@ -68,11 +21,12 @@ def index
 
 
     if new_user
-      render json: {token: gen_token(new_user.id)}
-    else
+       render json: {token: gen_token(new_user.id)}
+     else
       render json: {err: 'nope'}
-    end
-  end
+      render nothing: true, status: 401
+     end
+   end
 
   def index
     @users = User.all

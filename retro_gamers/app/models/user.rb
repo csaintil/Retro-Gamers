@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  PASSWORD_LENGTH = (6..25)
+ PASSWORD_LENGTH = (6..25)
   USERNAME_LENGTH = (5..15)
 
   validates_presence_of :username

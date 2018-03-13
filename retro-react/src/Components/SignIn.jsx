@@ -7,12 +7,12 @@ class SignIn extends Component {
     super(props);
 
     this.state = {
-      // admin: " ",
-      // name: " ",
-      // password: " ",
-      // actualPassword: " ",
+      admin: '',
+      name: " ",
+      password: " ",
+      actualPassword: " "
 
-      admin: this.props.admins.id
+      // admin: this.props.admins.id
       // adminId: this.props.
     };
     console.log(this.state);
@@ -38,10 +38,12 @@ class SignIn extends Component {
     e.preventDefault();
     this.getAdminById();
   }
-  getAdminById(e) {
+  getAdminById() {
+    console.log(this.props.match.params);
     axios({
-      url: `http://localhost:3000/admins/${this.state.admin}`,
-      method: "GET"
+      url: `http://localhost:3000/admins/1`,
+      method: "GET",
+      data:this.state
     }).then(response => {
       console.log(response.data.password);
        console.log(response);
@@ -55,7 +57,10 @@ class SignIn extends Component {
       console.log("getAdminById", this.state.admin);
     });
   }
-
+ compoundDidmount(){
+  this.getAdminById();
+  this.checkCredentials();
+ }
 
   checkCredentials() {
     console.log("checking");

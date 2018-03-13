@@ -12,7 +12,6 @@ import MainImg from "./Components/MainImg";
 import NavBar from "./Components/NavBar";
 import Cart from "./Components/Cart";
 import SlackBot from "./Components/SlackBot"
-import { ReactSlackChat } from 'react-slack-chat';
 
 
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -26,9 +25,11 @@ class App extends Component {
       admins: [],
       articles: [],
       games: [],
+      query: '',
       selectedItems: [],
       loadingData: false
     };
+    console.log(this.state.query)
     this.getAllAdmin = this.getAllAdmin.bind(this);
     this.newsApi = this.newsApi.bind(this);
     this.changeAdminState = this.changeAdminState.bind(this);
@@ -74,9 +75,9 @@ class App extends Component {
     });
   } 
 
-  gamesQuery(){
+  gamesQuery(query){
     axios({
-      url:"https://www.giantbomb.com/api/search/?api_key=a35932022fb2c673362caffe3d3a98b28c3daea6&format=json&query=Elder Scrolls&resources=game",
+      url:`https://www.giantbomb.com/api/search/?api_key=a35932022fb2c673362caffe3d3a98b28c3daea6&format=json&query=${this.state.query}&resources=game`,
       method:"get"
     }).then(response =>{
       this.setState({
@@ -117,6 +118,9 @@ class App extends Component {
   }
   changeAdminState(admin) {
     this.setState({ admin: admin });
+  }
+   changeQueryState(query) {
+    this.setState({ query: query });
   }
 
   render() {
@@ -160,7 +164,6 @@ class App extends Component {
                     {...props}
                     admins={this.state.admins}
                     getAllAdmin={this.getAllAdmin}
-                    state={this.state}
                     changeAdminState={this.changeAdminState}
                   />
                 );
@@ -189,7 +192,12 @@ class App extends Component {
               render={props => {
                 return (
                 <div>
-                  <NavBar />
+                  <NavBar
+                  games ={this.state.games}
+                   gamesQuery={this.gamesQuery}
+                  
+                  search = {this.state.query}
+                   />
                   <Games
                     {...props}
                     state={this.state}
