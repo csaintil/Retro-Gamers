@@ -1,0 +1,205 @@
+/** {
+  margin: 0 auto;
+  padding: 0 auto;
+}*/
+
+.welcome_page {
+  background-image: url("./Images/god.jpg");
+  background-size: cover;
+  height: 800px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.nav_bar {
+  top: 0;
+  height: 50px;
+  background-color: #716a6a45;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-decoration: none;
+  flex-direction: row;
+}
+.nav_links {
+  text-decoration: none;
+  width: 12%;
+  text-align: center;
+  margin: auto 2px;
+}
+.nav_container {
+  width: 40vw;
+  display: flex;
+}
+.nav_none {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 200;
+}
+.nav_none:hover {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+}
+/*//////////////////////////////////////////////////////////////////////////*/
+.admin_signIn {
+  /*background-color: yellow;*/
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  /*flex-direction: column; */
+  top: 717px;
+  width: 500px;
+}
+.admin {
+  display: flex;
+  justify-content: center;
+  background-color: #2b2b2b69;
+  width: 400px;
+  height: 35px;
+  position: absolute;
+  left: 300px;
+  padding-top: 10px;
+  border: 2px solid #c63d0f;
+  border-radius: 10px;
+  font-family: Palatino Linotype;
+  font-size: 20px;
+  font-weight: 200px;
+  text-decoration: none;
+  color: white;
+}
+.user_signIn {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  top: 716px;
+}
+.user {
+  display: flex;
+  justify-content: center;
+  background-color: #2b2b2b69;
+  width: 400px;
+  height: 33px;
+  position: absolute;
+  left: 750px;
+  /*top: 8px;*/
+  padding-top: 12px;
+  border: 2px solid #c63d0f;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 200px;
+  text-decoration: none;
+  color: white;
+  font-family: Palatino Linotype;
+}
+.user:hover {
+  color: #e9e581;
+  font-size: 20px;
+  font-weight: 800;
+  transform: scaleX(20deg);
+}
+.admin:hover {
+  color: #e9e581;
+  font-size: 20px;
+  font-weight: 800;
+}
+a {
+  text-decoration: none;
+}
+
+/*/////////////////////NEWS////////////////////////////////////*/
+.news_container {
+  background-color: black;
+  color: ghostwhite;
+  overflow-y: hidden;
+  /*background-image: url("./Images/bat.jpg");*/
+  background-size: cover;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.news_img {
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  border: 2px solid red;
+}
+.news_img:hover {
+ border: 2px solid white; 
+}
+.title {
+  position: relative;
+  bottom: 12px;
+  left: 85px;
+  font-family: Proxima-Nova;
+  font-weight: 700px;
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.author {
+  position: relative;
+  top: 240px;
+  left: 89px;
+  font-family: Proxima-Nova;
+  font-weight: 700px;
+  font-size: 13px;
+  line-height: 16px;
+}
+.description {
+  position: relative;
+  top: 990px;
+  left: 104px;
+}
+.published {
+  position: relative;
+  top: 190px;
+  left: 90px;
+  font-family: Proxima-Nova;
+  font-weight: 700px;
+  font-size: 13px;
+  line-height: 16px;
+}
+.source {
+  height: 80px;
+  position: relative;
+  bottom: 100px;
+  border-top: 1px dashed gray;
+  border-bottom: 1px dashed gray;
+}
+.sponser {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 20px;
+}
+.comments {
+  width: 240px;
+  height: 40px;
+  position: relative;
+  top: 160px;
+  left: 600px;
+  border: 1px solid red;
+  border-radius: 5px;
+}
+.comment {
+  position: relative;
+  bottom: 10px;
+  left: 82px;
+  font-family: Proxima-Nova;
+  font-size: 20px;
+}
+.comments:hover {
+  background-color: red;
+  color: white;
+}
+/*//////////////////////////////////////////////*/
+/*.game_img {
+  height: 20px;
+  width: 20px;
+}*/
