@@ -25,7 +25,7 @@ class App extends Component {
       admins: [],
       articles: [],
       games: [],
-      query: '',
+      query: 'dark',
       selectedItems: [],
       loadingData: false
     };

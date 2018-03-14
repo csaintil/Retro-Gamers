@@ -8,7 +8,6 @@ class NavBar extends Component {
       search: this.props.search
     }
    this.handleSearch = this.handleSearch.bind(this);
-console.log(this.props.handleQueryState(this));
 this.submitSearch = this.submitSearch.bind(this);
   }
     handleSearch(e) {
@@ -25,6 +24,7 @@ this.submitSearch = this.submitSearch.bind(this);
     }
 submitSearch(){
   this.props.handleQueryState(this);
+  console.log(this.props.handleQueryState)
 }
 
    render() {
@@ -58,7 +58,7 @@ submitSearch(){
                       value ={this.state.search}
 
                      />
-                     <input type="submit" value="submit"/>
+                     <input type="submit" value="submit" />
                    </div>
                  </form>
             

@@ -28,18 +28,24 @@ class Cart extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="game_container">
+      <div className="sub_container">
         <h1> Cart </h1>
+                            <div className="divider"></div>
+
         {this.props.selectedItems.map((item, i) => {
           return (
             <div key={i}>
-              <div> {item.name} </div>
-              <div> <img src={item.image_url} alt="" /> </div>
-            <button onClick={this.delete.bind(this, item.id)}>DELETE ITEMS</button>
+              <div  className="game_name"> {item.name} </div>
+                            <div className="divider2"></div>
+
+              <div className="game_img2"> <img src={item.image_url} alt="" /> </div>
+            <button className="delete_button" onClick={this.delete.bind(this, item.id)}>X</button>
 
             </div>
           );
         })}
+      </div>
       </div>
     );
   }

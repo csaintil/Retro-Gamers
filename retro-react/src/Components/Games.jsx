@@ -31,23 +31,32 @@ class Games extends Component {
 
   render() {
     return (
-      <div>
+      <div className="game_container">
+      <div className="sub_container">
         <h1>Games</h1>
+                    <div className="divider"></div>
+
         {this.props.games.map((game, i) => {
           return (
             <div key={i}>
-              <p> {game.name} </p>
-              <p className="game_img">
-                <img src={game.image.thumb_url} alt="" />
-              </p>
-              <p>{game.deck} </p>
-              <div>
+              <div className="game_name"> {game.name} </div>
+
+              <div className="divider2"></div>
+
+                  <div className="game_img">
+                    <img src={game.image.thumb_url} alt="" />
+                  </div>
+
+
+                   <div className= "game_deck">{game.deck} </div>
+
+              <div className="paltform">
                 {" "}
                 {game.platforms.forEach(platform => {
                  // console.log(platform.name)
                 })}{" "}
               </div>
-              <button
+              <button className="btn"
                 onClick={this.selected.bind(
                   this,
                   game.name,
@@ -60,6 +69,7 @@ class Games extends Component {
             </div>
           );
         })}
+      </div>
       </div>
     );
   }
