@@ -19,14 +19,16 @@ class UsersController < ApplicationController
       username: username
     })
 
-
-    if new_user
-       render json: {token: gen_token(new_user.id)}
-     else
-      render json: {err: 'nope'}
+new_user = User.new({
+      password: password,
+      username: username
+    })
+    if new_user.valid?
+      render json: {token: gen_token(new_user.id)}
+    else
       render nothing: true, status: 401
-     end
-   end
+    end
+  end
 
   def index
     @users = User.all

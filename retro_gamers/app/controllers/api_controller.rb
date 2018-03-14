@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApiController < ActionController::API
  include ActionController::HttpAuthentication::Token::ControllerMethods
 
   def encode(payload, exp = 24.hours.from_now)
@@ -30,6 +30,22 @@ class ApplicationController < ActionController::API
   end
   # ////////////////////////////////////////////////////
 
+def news_api 
+     api_key = ENV['api_key']
+    response = HTTParty.get("http://newsapi.org/v2/top-headlines?sources=ign&apiKey=#{api_key}")
+   render  json: response
+
+ end
+
+ def gamesQuery 
+  
+  user_key = ENV['user_key']
+  response = HTTParty.get("https://www.giantbomb.com/api/search/?api_key=#{user_key}&format=json&query=#{query}{}&resources=game")
+   render json: response
+   end
+
+end
+
 
   
-end
+

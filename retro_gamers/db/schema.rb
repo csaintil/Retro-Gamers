@@ -18,10 +18,8 @@ ActiveRecord::Schema.define(version: 20180309193510) do
   create_table "admins", force: :cascade do |t|
     t.string "name"
     t.string "password"
-    t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_admins_on_game_id"
   end
 
   create_table "games", force: :cascade do |t|

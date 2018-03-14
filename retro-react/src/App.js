@@ -58,14 +58,7 @@ class App extends Component {
  
 
   newsApi() {
-    var api_key = "dbc866b593144a2d89c8c72efef2336c";
-    axios(
-      `https://newsapi.org/v2/top-headlines?sources=ign&apiKey=${api_key}`,
-      {
-        headers: {
-          Authorization: `Bearer ${api_key}`
-        }
-      }
+    axios(`http://localhost:3000/news`
     ).then(response => {
       this.setState({
         articles: response.data.articles,
@@ -77,7 +70,7 @@ class App extends Component {
 
   gamesQuery(query){
     axios({
-      url:`https://www.giantbomb.com/api/search/?api_key=a35932022fb2c673362caffe3d3a98b28c3daea6&format=json&query=${this.state.query}&resources=game`,
+      url:`http://localhost:3000/games`,
       method:"get"
     }).then(response =>{
       this.setState({

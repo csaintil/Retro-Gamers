@@ -4,7 +4,6 @@ class CreateAdmins < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :password
 
-      t.belongs_to :game, index:true
          
       t.timestamps
     end
