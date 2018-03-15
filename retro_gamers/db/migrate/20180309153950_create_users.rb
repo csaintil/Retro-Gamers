@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       # t.string :DOB
        
        
-       # t.belongs_to :game, index:true
 
       t.timestamps
     end

@@ -12,6 +12,12 @@ import MainImg from "./Components/MainImg";
 import NavBar from "./Components/NavBar";
 import Cart from "./Components/Cart";
 import SlackBot from "./Components/SlackBot"
+import TokenService from "./services/TokenService"
+import Register from "./Components/Register"
+import Login from "./Components/Login"
+import EditUser from "./Components/EditUser"
+import User from "./Components/User"
+
 
 
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -27,14 +33,17 @@ class App extends Component {
       games: [],
       query: 'dark',
       selectedItems: [],
+      users: {},
       loadingData: false
     };
-    console.log(this.state.query)
+    // console.log(this.state.query)
     this.getAllAdmin = this.getAllAdmin.bind(this);
     this.newsApi = this.newsApi.bind(this);
     this.changeAdminState = this.changeAdminState.bind(this);
     this.gamesQuery = this.gamesQuery.bind(this);
     this.gamesSelected = this.gamesSelected.bind(this);
+    this.getAllUsers = this.getAllUsers.bind(this);
+
   }
   // const url = "http://localhost:3000/admins"
 
@@ -49,7 +58,7 @@ class App extends Component {
           admins: response.data,
           loadingData: true
         });
-        console.log(this.state.admins);
+        // console.log(this.state.admins);
       })
       .catch(err => {
         console.log("there is an error in getAdmin", err);
@@ -78,13 +87,14 @@ class App extends Component {
         loadingData:true
       })
       // console.log(response);
-      console.log(this.state.games);
+      // console.log(this.state.games);
     })
   }
 
   gamesSelected() {
+    // console.log("we are in the selectedItems")
     axios({
-      url: "http://localhost:3000/games",
+      url: "http://localhost:3000/carts",
       method: "GET"
     })
       .then(response => {
@@ -93,7 +103,7 @@ class App extends Component {
           selectedItems: response.data,
           loadingData: true
         });
-        console.log(this.state.selectedItems);
+        // console.log(this.state.selectedItems);
       })
       .catch(err => {
         console.log("there is an error in gamesSelected", err);
@@ -101,6 +111,74 @@ class App extends Component {
   }
 
 
+ register(data) {
+  axios({
+    url:"http://localhost:3000/users",
+    method:"POST",
+    data
+  }).then(response => {
+    TokenService.save(response.data.token)
+    console.log(response);
+  }).catch(err => {
+    console.log("there is an error in register: ", err);
+  })
+ }
+
+
+
+ login(data) {
+   axios('http://localhost:3000/users/login', {
+     method: "POST",
+     data
+   }).then(resp => {
+     TokenService.save(resp.data.token);
+     this.setState({ redirect: true, currentUser: resp.data.user, id: resp.data.user.id })
+     // console.log("currentUser: ", resp.data.user)
+     // console.log('user id: ', this.state.id)
+   })
+   .catch(err => console.log(`err: ${err}`));
+ }
+
+ logout(e) {
+   e.preventDefault();
+   TokenService.destroy();
+ }
+
+ checkLogin() {
+   axios('http://localhost:3000/isLoggedIn', {
+     headers: {
+       Authorization: `Bearer ${TokenService.read()}`,
+     },
+   }).then(resp => console.log('checkLogin: ',resp))
+   .catch(err => console.log(err));
+ }
+
+ updateUser(data){
+  axios({
+    url:`http://localhost:3000/users/1`,
+    method:"PUT",
+    data
+  }).then(response => {
+    TokenService.save(response.data.token)
+    // console.log(response);
+  }).catch(err => {
+    console.log("there is an error in register: ", err);
+  })
+}
+getAllUsers(){
+ axios('http://localhost:3000/users', {
+     headers: {
+       Authorization: `Bearer ${TokenService.read()}`,
+     },
+     method: "GET",
+
+   }).then(response => {
+     this.setState({
+      users: response.data
+     }) 
+    console.log('users: ',this.state.users)
+  }).catch(err => console.log(err));
+}
 
 
   componentDidMount() {
@@ -108,6 +186,7 @@ class App extends Component {
     this.newsApi();
     this.gamesQuery();
     this.gamesSelected();
+    this.getAllUsers();
   }
   changeAdminState(admin) {
     this.setState({ admin: admin });
@@ -122,6 +201,10 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/welcome" />} />
+           <Route exact path="/user/login" render={props =>  { return    <Login {...props} submit={this.login.bind(this)}  /> }} />
+             <Route exact path="/user/register" render={props => {  return <Register {...props} submit={this.register.bind(this)}  /> }} />
+              <Route exact path="/profile" render={props => {  return <EditUser {...props} submit={this.updateUser.bind(this)}  /> }} />
+
             <Route
               exact
               path="/welcome"
@@ -129,14 +212,15 @@ class App extends Component {
                 return (
                   <div>
                   <SlackBot />
-                    <LandingPage />
+                    <LandingPage
+                     />
                   </div>
                 );
               }}
             />
             <Route
               exact
-              path="/admins/SignIn"
+              path="/signIn"
               render={props => {
                 return (
                   <SignIn
@@ -150,7 +234,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/admins/SignUp"
+              path="/signUp"
               render={props => {
                 return (
                   <SignUp
@@ -164,11 +248,13 @@ class App extends Component {
             />
             <Route
               exact
-              path="/admins/News"
+              path="/news"
               render={props => {
                 return (
                 <div>
-                  <NavBar />
+                  <NavBar 
+
+                  />
                   <News
                     {...props}
                     state={this.state}
@@ -181,18 +267,20 @@ class App extends Component {
             />
              <Route
               exact
-              path="/admins/games"
+              path="/games"
               render={props => {
                 return (
                 <div>
                   <NavBar
+
                   games ={this.state.games}
-                   gamesQuery={this.gamesQuery}
-                  
+                  gamesQuery={this.gamesQuery}
                   search = {this.state.query}
                    />
                   <Games
                     {...props}
+                    users={this.state.users}
+                    getAllUsers={this.getAllUsers}
                     state={this.state}
                     games={this.state.games}
                     gamesQuery={this.gamesQuery}
@@ -201,13 +289,33 @@ class App extends Component {
                 );
               }}
             />
-            <Route
+
+            // <Route
+            //   exact
+            //   path="/cart"
+            //   render={props => {
+            //     return (
+            //     <div>
+            //       <NavBar />
+            //       <Cart
+            //         {...props}
+            //         state={this.state}
+            //         selectedItems={this.state.selectedItems}
+            //         gamesSelected={this.gamesSelected}
+
+            //       />
+            //       </div>
+            //     );
+            //   }}
+            />
+                <Route
               exact
-              path="/admins/cart"
+              path="users/:id/carts"
               render={props => {
                 return (
                 <div>
                   <NavBar />
+
                   <Cart
                     {...props}
                     state={this.state}
@@ -219,6 +327,22 @@ class App extends Component {
                 );
               }}
             />
+
+            <Route
+              exact
+              path="/profile"
+              render={props => {
+                return (
+                  <EditUser
+                    {...props}
+                    admins={this.state.admins}
+                    getAllAdmin={this.getAllAdmin}
+                    changeAdminState={this.changeAdminState}
+                  />
+                );
+              }}
+            />
+
           </Switch>
         </div>
       </BrowserRouter>

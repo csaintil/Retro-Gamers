@@ -6,9 +6,9 @@ class CreateGames < ActiveRecord::Migration[5.1]
        # t.string  :description
        # t.integer :price
        # t.string  :img_url
-        t.string  :name
-        t.string  :image_url
-       t.string  :deck
+       #  t.string  :name
+       #  t.string  :image_url
+       # t.string  :deck
        
        
         

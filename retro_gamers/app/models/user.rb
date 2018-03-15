@@ -1,14 +1,17 @@
 class User < ApplicationRecord
- PASSWORD_LENGTH = (6..25)
-  USERNAME_LENGTH = (5..15)
+
+    
+
+ PASSWORD_LENGTH = (0..25)
+  USERNAME_LENGTH = (0..15)
 
   validates_presence_of :username
   validates :username, length: USERNAME_LENGTH, uniqueness: true
 
   validates :password, length: PASSWORD_LENGTH, allow_nil: true
 
-  has_many :games
-
+   has_many :carts
+   # belongs_to :cart
   attr_reader :password
 
   def self.find_from_credentials(username, password)

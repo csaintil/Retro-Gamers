@@ -28,6 +28,8 @@ class ApiController < ActionController::API
     return if current_user
     render nothing: true, status: 401
   end
+
+  
   # ////////////////////////////////////////////////////
 
 def news_api 
@@ -38,9 +40,8 @@ def news_api
  end
 
  def gamesQuery 
-  
   user_key = ENV['user_key']
-  response = HTTParty.get("https://www.giantbomb.com/api/search/?api_key=#{user_key}&format=json&query=#{query}{}&resources=game")
+  response = HTTParty.get("https://www.giantbomb.com/api/search/?api_key=#{user_key}&format=json&query=Elder&resources=game")
    render json: response
    end
 

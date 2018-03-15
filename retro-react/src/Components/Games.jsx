@@ -1,75 +1,78 @@
 import React, { Component } from "react";
 import axios from "axios";
+import TokenService from "../services/TokenService"
+
 
 class Games extends Component {
   constructor(props) {
     super(props);
     this.state = {
       games: [],
-      hasdata: false
+      hasdata: false,
+      user_id: this.props.users
     };
-
     this.selected = this.selected.bind(this);
+    // console.log(this.props.users)
+      console.log(this.props.logout)
+
   }
+
 
   selected(name, image, deck) {
-    axios({
-      url: "http://localhost:3000/games",
+    axios('http://localhost:3000/users/carts', {
+     headers: {
+       Authorization: `Bearer ${TokenService.read()}`,
+     },
       method: "POST",
-      data: {
-        game: {
+     data: {
+        cart: {
           name: name,
           image_url: image,
-          deck: deck
+          deck: deck,
+          user_id: this.state.user_id
         }
       }
-    }).then(response => {
-      console.log(response.data);
-      this.props.gamesQuery();
-    });
+   }).then(resp => {
+   console.log(resp) 
+         this.props.gamesQuery();
+
+   } 
+   ).catch(err => console.log(err));
   }
+
 
   render() {
     return (
-      <div className="game_container">
       <div className="sub_container">
-        <h1>Games</h1>
-                    <div className="divider"></div>
+        <h1 className="page_title">Games</h1>
+          <div className="divider"></div>
+              {this.props.games.map((game, i) => {
+                return (
+                  <div key={i} className="game_container">
+                    <div className="game_div" key={i}>
 
-        {this.props.games.map((game, i) => {
-          return (
-            <div key={i}>
-              <div className="game_name"> {game.name} </div>
+                      <div className="image_div">
+                          <img className="image" src={game.image.thumb_url} alt="" />
+                      </div>
 
-              <div className="divider2"></div>
-
-                  <div className="game_img">
-                    <img src={game.image.thumb_url} alt="" />
+                      <div className="content_div">
+                          <div className="game_name"> {game.name} </div>
+                          <div>{game.deck} </div>
+                      </div>
+                      
+                      <div className="button">
+                    <button className="btn" onClick={this.selected.bind(this,game.name,game.image.thumb_url,
+                      game.deck)}>Select </button>
+                      </div>
+                    </div>
+                    <div>
+                      {game.platforms.forEach(platform => {
+                       // console.log(platform.name)
+                      })}
+                    </div>
                   </div>
-
-
-                   <div className= "game_deck">{game.deck} </div>
-
-              <div className="paltform">
-                {" "}
-                {game.platforms.forEach(platform => {
-                 // console.log(platform.name)
-                })}{" "}
-              </div>
-              <button className="btn"
-                onClick={this.selected.bind(
-                  this,
-                  game.name,
-                  game.image.thumb_url,
-                  game.deck
-                )}
-              >
-                Select
-              </button>
-            </div>
           );
         })}
-      </div>
       </div>
     );
   }

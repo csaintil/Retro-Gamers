@@ -17,7 +17,7 @@ class Cart extends Component {
   delete(id){
     console.log(this.props.params)
     axios({
-      url:`http://localhost:3000/games/${id}`,
+      url:`http://localhost:3000/carts/${id}`,
       method:"DELETE"
     }).then(() => {
       console.log("Game removed");
@@ -28,24 +28,31 @@ class Cart extends Component {
   }
   render() {
     return (
-      <div className="game_container">
       <div className="sub_container">
-        <h1> Cart </h1>
-                            <div className="divider"></div>
+        <h1 className="page_title"> Cart </h1>
+            <div className="divider"></div>
 
         {this.props.selectedItems.map((item, i) => {
           return (
-            <div key={i}>
-              <div  className="game_name"> {item.name} </div>
-                            <div className="divider2"></div>
+            <div key={i} className="game_container">
+            <div className="game_div" key={i}> 
 
-              <div className="game_img2"> <img src={item.image_url} alt="" /> </div>
-            <button className="delete_button" onClick={this.delete.bind(this, item.id)}>X</button>
+               <div className="image_div">
+                          <img className="image" src={item.image_url} alt="" />
+                      </div>
 
+                      <div className="content_div">
+                          <div className="game_name"> {item.name} </div>
+                          <div>{item.deck} </div>
+                      </div>
+
+                         <div>
+                            <button className="delete_button" onClick={this.delete.bind(this, item.id)}>X</button>
+                         </div>
+            </div>
             </div>
           );
         })}
-      </div>
       </div>
     );
   }
