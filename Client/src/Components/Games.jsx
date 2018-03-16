@@ -9,7 +9,7 @@ class Games extends Component {
     this.state = {
       games: [],
       hasdata: false,
-      user_id: this.props.users
+      user_id: this.props.id
     };
     this.selected = this.selected.bind(this);
     // console.log(this.props.users)
@@ -19,7 +19,7 @@ class Games extends Component {
 
 
   selected(name, image, deck) {
-    axios('http://localhost:3000/users/carts', {
+    axios('http://localhost:3000/carts', {
      headers: {
        Authorization: `Bearer ${TokenService.read()}`,
      },

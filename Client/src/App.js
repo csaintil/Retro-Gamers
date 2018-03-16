@@ -31,9 +31,9 @@ class App extends Component {
       admins: [],
       articles: [],
       games: [],
-      query: 'dark',
       selectedItems: [],
-      users: {},
+      id: "",
+      Redirect:false,
       loadingData: false
     };
     // console.log(this.state.query)
@@ -42,7 +42,7 @@ class App extends Component {
     this.changeAdminState = this.changeAdminState.bind(this);
     this.gamesQuery = this.gamesQuery.bind(this);
     this.gamesSelected = this.gamesSelected.bind(this);
-    this.getAllUsers = this.getAllUsers.bind(this);
+    // this.getAllUsers = this.getAllUsers.bind(this);
 
   }
   // const url = "http://localhost:3000/admins"
@@ -132,7 +132,12 @@ class App extends Component {
      data
    }).then(resp => {
      TokenService.save(resp.data.token);
-     this.setState({ redirect: true, currentUser: resp.data.user, id: resp.data.user.id })
+     this.setState({ redirect: true, currentUser: resp.data.user, id: resp.data.user.id 
+             // localStorage.setItem("id", " this.state.id" )
+
+     })
+
+
      // console.log("currentUser: ", resp.data.user)
      // console.log('user id: ', this.state.id)
    })
@@ -143,7 +148,6 @@ class App extends Component {
    e.preventDefault();
    TokenService.destroy();
  }
-
  checkLogin() {
    axios('http://localhost:3000/isLoggedIn', {
      headers: {
@@ -165,20 +169,6 @@ class App extends Component {
     console.log("there is an error in register: ", err);
   })
 }
-getAllUsers(){
- axios('http://localhost:3000/users', {
-     headers: {
-       Authorization: `Bearer ${TokenService.read()}`,
-     },
-     method: "GET",
-
-   }).then(response => {
-     this.setState({
-      users: response.data
-     }) 
-    console.log('users: ',this.state.users)
-  }).catch(err => console.log(err));
-}
 
 
   componentDidMount() {
@@ -186,7 +176,7 @@ getAllUsers(){
     this.newsApi();
     this.gamesQuery();
     this.gamesSelected();
-    this.getAllUsers();
+    // this.getAllUsers();
   }
   changeAdminState(admin) {
     this.setState({ admin: admin });
@@ -253,8 +243,8 @@ getAllUsers(){
                 return (
                 <div>
                   <NavBar 
-
-                  />
+                  logout={this.logout.bind(this)}
+                  /> 
                   <News
                     {...props}
                     state={this.state}
@@ -272,6 +262,7 @@ getAllUsers(){
                 return (
                 <div>
                   <NavBar
+                    logout={this.logout.bind(this)}
 
                   games ={this.state.games}
                   gamesQuery={this.gamesQuery}
@@ -279,6 +270,7 @@ getAllUsers(){
                    />
                   <Games
                     {...props}
+                    id ={this.state.id}
                     users={this.state.users}
                     getAllUsers={this.getAllUsers}
                     state={this.state}
@@ -290,32 +282,17 @@ getAllUsers(){
               }}
             />
 
-            // <Route
-            //   exact
-            //   path="/cart"
-            //   render={props => {
-            //     return (
-            //     <div>
-            //       <NavBar />
-            //       <Cart
-            //         {...props}
-            //         state={this.state}
-            //         selectedItems={this.state.selectedItems}
-            //         gamesSelected={this.gamesSelected}
-
-            //       />
-            //       </div>
-            //     );
-            //   }}
-            />
-                <Route
+             <Route
               exact
-              path="users/:id/carts"
+              path="/carts"
               render={props => {
                 return (
                 <div>
-                  <NavBar />
+                  <NavBar
+                    logout={this.logout.bind(this)}
 
+
+                   />
                   <Cart
                     {...props}
                     state={this.state}
@@ -326,6 +303,27 @@ getAllUsers(){
                   </div>
                 );
               }}
+            />
+                <Route
+              // exact
+              // path="users/:id/carts"
+              // render={props => {
+              //   return (
+              //   <div>
+              //     <NavBar
+              //       logout={this.logout.bind(this)}
+              //       />
+
+              //     <Cart
+              //       {...props}
+              //       state={this.state}
+              //       selectedItems={this.state.selectedItems}
+              //       gamesSelected={this.gamesSelected}
+
+              //     />
+              //     </div>
+              //   );
+              // }}
             />
 
             <Route

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :games
       get "users/:id/carts", to: 'users#users_by_cart'
       post "users/carts", to:  'carts#create'
+
+      # get"carts/:id/cart" to: 'carts#grab_cart'
       
  get 'isLoggedIn', :to => 'users#is_logged_in'
  post 'users/login', :to => 'users#login'

@@ -18,7 +18,7 @@ export default class Login extends Component {
     console.log(`handling submit: ${data}`);
     this.props.submit(data);
     
-     // this.props.history.push("/news");
+     this.props.history.push("/news");
 
   }
 

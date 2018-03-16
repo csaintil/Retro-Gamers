@@ -51,14 +51,16 @@ submitSearch(){
                    </Link>
                </div>
                 <div className="nav_links">
-                   <Link className="nav_none" to="/cart">
+                   <Link className="nav_none" to="/carts">
                        Cart
                    </Link>
                </div>
-               <div>
-               
-                 <button onClick={this.props.logout}> Log Out</button>
-                </div>
+
+                <div className="nav_links">
+                   <Link className="nav_none" to="/user/login">
+                       Sign Out
+                   </Link>
+               </div>
            </div>
        );
    }
