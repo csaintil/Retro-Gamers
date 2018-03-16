@@ -29,7 +29,7 @@ class Cart extends Component {
   render() {
     return (
       <div className="sub_container">
-        <h1 className="page_title"> Cart </h1>
+        <h1 className="page_title"> Your Orders</h1>
             <div className="divider"></div>
 
         {this.props.selectedItems.map((item, i) => {

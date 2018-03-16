@@ -5,7 +5,6 @@ class News extends Component {
   render() {
     return (
       <div className="news_container">
-        <h1>News</h1>
         {this.props.articles.map((article, i) => {
           return (
             <div key={i}>

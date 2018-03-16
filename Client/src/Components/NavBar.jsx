@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+var FontAwesome = require('react-fontawesome');
+
 
 class NavBar extends Component {
   constructor(props){
@@ -42,7 +44,12 @@ submitSearch(){
                </div>
                <div className="nav_links">
                    <Link className="nav_none" to="/profile">
-                       Profile
+                        <FontAwesome
+                                className='super-crazy-colors'
+                                name='user'
+                                size='2x'
+                                style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                              />
                    </Link>
                </div>
                <div className="nav_links">
@@ -52,10 +59,17 @@ submitSearch(){
                </div>
                 <div className="nav_links">
                    <Link className="nav_none" to="/carts">
-                       Cart
+
+                           <FontAwesome
+                                className='super-crazy-colors'
+                                name='shopping-cart'
+                                size='2x'
+                                style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                              />
+                               
                    </Link>
                </div>
-
+            
                 <div className="nav_links">
                    <Link className="nav_none" to="/user/login">
                        Sign Out

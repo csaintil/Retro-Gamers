@@ -57,7 +57,7 @@ class Games extends Component {
 
                       <div className="content_div">
                           <div className="game_name"> {game.name} </div>
-                          <div>{game.deck} </div>
+                          <div className="game_deck">{game.deck} </div>
                       </div>
                       
                       <div className="button">
