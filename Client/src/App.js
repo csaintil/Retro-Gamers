@@ -45,11 +45,11 @@ class App extends Component {
     // this.getAllUsers = this.getAllUsers.bind(this);
 
   }
-  // const url = "http://localhost:3000/admins"
+  // const url = "/admins"
 
   getAllAdmin() {
     axios({
-      url: "http://localhost:3000/admins",
+      url: "/admins",
       method: "GET"
     })
       .then(response => {
@@ -67,7 +67,7 @@ class App extends Component {
  
 
   newsApi() {
-    axios(`http://localhost:3000/news`
+    axios(`/news`
     ).then(response => {
       this.setState({
         articles: response.data.articles,
@@ -79,7 +79,7 @@ class App extends Component {
 
   gamesQuery(query){
     axios({
-      url:`http://localhost:3000/games`,
+      url:`/games`,
       method:"get"
     }).then(response =>{
       this.setState({
@@ -94,7 +94,7 @@ class App extends Component {
   gamesSelected() {
     // console.log("we are in the selectedItems")
     axios({
-      url: "http://localhost:3000/carts",
+      url: "/carts",
       method: "GET"
     })
       .then(response => {
@@ -113,7 +113,7 @@ class App extends Component {
 
  register(data) {
   axios({
-    url:"http://localhost:3000/users",
+    url:"/users",
     method:"POST",
     data
   }).then(response => {
@@ -127,7 +127,7 @@ class App extends Component {
 
 
  login(data) {
-   axios('http://localhost:3000/users/login', {
+   axios('/users/login', {
      method: "POST",
      data
    }).then(resp => {
@@ -150,7 +150,7 @@ class App extends Component {
    // console.log(window.localStorage)
  }
  checkLogin() {
-   axios('http://localhost:3000/isLoggedIn', {
+   axios('/isLoggedIn', {
      headers: {
        Authorization: `Bearer ${TokenService.read()}`,
      },
@@ -160,7 +160,7 @@ class App extends Component {
 
  updateUser(data){
   axios({
-    url:`http://localhost:3000/users/${this.state.id}`,
+    url:`/users/${this.state.id}`,
     method:"PUT",
     data
   }).then(response => {

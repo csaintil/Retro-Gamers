@@ -41,7 +41,7 @@ class SignIn extends Component {
   getAdminById() {
     console.log(this.props.match.params);
     axios({
-      url: `http://localhost:3000/admins/1`,
+      url: `admins/1`,
       method: "GET",
       data:this.state
     }).then(response => {

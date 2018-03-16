@@ -31,7 +31,7 @@ class SignUp extends Component {
   createAdmin(e){
     // e.preventDefault();
     axios({
-      url:"http://localhost:3000/admins",
+      url:"/admins",
       method:"POST",
       data: this.state
     }).then(response => {

@@ -13,7 +13,7 @@ export default class User extends Component {
   }
 
   getAllUsers(){
- axios('http://localhost:3000/users', {
+ axios('/users', {
      headers: {
        Authorization: `Bearer ${TokenService.read()}`,
      },
