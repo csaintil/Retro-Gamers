@@ -103,7 +103,7 @@ class App extends Component {
           selectedItems: response.data,
           loadingData: true
         });
-        // console.log(this.state.selectedItems);
+        console.log(this.state.selectedItems);
       })
       .catch(err => {
         console.log("there is an error in gamesSelected", err);
@@ -147,6 +147,7 @@ class App extends Component {
  logout(e) {
    e.preventDefault();
    TokenService.destroy();
+   // console.log(window.localStorage)
  }
  checkLogin() {
    axios('http://localhost:3000/isLoggedIn', {
@@ -159,7 +160,7 @@ class App extends Component {
 
  updateUser(data){
   axios({
-    url:`http://localhost:3000/users/1`,
+    url:`http://localhost:3000/users/${this.state.id}`,
     method:"PUT",
     data
   }).then(response => {

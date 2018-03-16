@@ -2,16 +2,16 @@ class CartsController < ApplicationController
   # before_action :ensure_signed_in
 
   def index
-    carts = Cart.all
+    carts = Cart.where(params[:id])
     render json: carts
     # render plain: "We are in Index"
   end
 
-  def grab_cart
-    carts = Cart.find (params.id)
-    render json: cart
-    # render plain: "We are in Index"
-  end
+  # def grab_cart
+  #   carts = Cart.find (params.id)
+  #   render json: cart
+  #   # render plain: "We are in Index"
+  # end
 
   def show 
     cart = Cart.find(params[:id])

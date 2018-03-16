@@ -8,6 +8,10 @@
   background-image: url("./Images/last.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+    height:800px;
+    display: flex;
+    justify-content: center;
+
 }
 
 .nav_bar {
@@ -59,8 +63,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height:800px;
-  
+  /*height:800px;*/
+
 }
 
 .admin {
@@ -68,9 +72,9 @@
   align-items: center;
   justify-content: center;
   background-color: #2b2b2b69;
-  width: 200px;
+  width: 103px;
   height: 35px;
-  
+  margin-left: 13px;
   border: 2px solid #0E4D91;
   border-radius: 10px;
   font-family: Palatino Linotype;
@@ -79,9 +83,12 @@
   text-decoration: none;
   color: white;
 }
-.user_signIn {
-
+.user_login {
+ display: flex;
+ align-items: center;
+ justify-content: center;
 }
+
 .user {
  
 }
@@ -419,7 +426,7 @@ a {
   justify-content: center;
 
   width:100px;
-  height: 6vh;
+  height: 35px;
   background: #0E4D91;
   color: white;
 }
