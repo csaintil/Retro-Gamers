@@ -19,7 +19,7 @@ class Games extends Component {
 
 
   selected(name, image, deck) {
-    axios('/carts', {
+    axios("/carts", {
      headers: {
        Authorization: `Bearer ${TokenService.read()}`,
      },

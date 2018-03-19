@@ -49,7 +49,7 @@ class App extends Component {
 
   getAllAdmin() {
     axios({
-      url: "/admins",
+      url: "http://localhost:3000/admins",
       method: "GET"
     })
       .then(response => {
@@ -67,7 +67,7 @@ class App extends Component {
  
 
   newsApi() {
-    axios(`/news`
+    axios("/news"
     ).then(response => {
       this.setState({
         articles: response.data.articles,
@@ -214,12 +214,15 @@ class App extends Component {
               path="/signIn"
               render={props => {
                 return (
+                  <div>
+                  <SlackBot />
                   <SignIn
                     {...props}
                     admins={this.state.admins}
                     getAllAdmin={this.getAllAdmin}
                     changeAdminState={this.changeAdminState}
                   />
+                  </div>
                 );
               }}
             />
@@ -228,12 +231,15 @@ class App extends Component {
               path="/signUp"
               render={props => {
                 return (
+                  <div>
+                  <SlackBot />
                   <SignUp
                     {...props}
                     admins={this.state.admins}
                     getAllAdmin={this.getAllAdmin}
                     changeAdminState={this.changeAdminState}
                   />
+                  </div>
                 );
               }}
             />
@@ -243,6 +249,7 @@ class App extends Component {
               render={props => {
                 return (
                 <div>
+                <SlackBot />
                   <NavBar 
                   logout={this.logout.bind(this)}
                   /> 
@@ -262,6 +269,7 @@ class App extends Component {
               render={props => {
                 return (
                 <div>
+                <SlackBot />
                   <NavBar
                     logout={this.logout.bind(this)}
 
@@ -289,6 +297,7 @@ class App extends Component {
               render={props => {
                 return (
                 <div>
+                <SlackBot />
                   <NavBar
                     logout={this.logout.bind(this)}
 
@@ -332,12 +341,16 @@ class App extends Component {
               path="/profile"
               render={props => {
                 return (
+                  <div>
+                  <SlackBot />
                   <EditUser
                     {...props}
                     admins={this.state.admins}
                     getAllAdmin={this.getAllAdmin}
                     changeAdminState={this.changeAdminState}
                   />
+
+                  </div>
                 );
               }}
             />

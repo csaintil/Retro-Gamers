@@ -17,7 +17,7 @@ class Cart extends Component {
   delete(id){
     console.log(this.props.params)
     axios({
-      url:`/carts/${id}`,
+      url:"/carts/${id}",
       method:"DELETE"
     }).then(() => {
       console.log("Game removed");
