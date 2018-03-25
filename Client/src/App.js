@@ -11,7 +11,7 @@ import Games from "./Components/Games";
 import MainImg from "./Components/MainImg";
 import NavBar from "./Components/NavBar";
 import Cart from "./Components/Cart";
-import SlackBot from "./Components/SlackBot"
+// import SlackBot from "./Components/SlackBot"
 import TokenService from "./services/TokenService"
 import Register from "./Components/Register"
 import Login from "./Components/Login"
@@ -202,7 +202,7 @@ class App extends Component {
               render={props => {
                 return (
                   <div>
-                  <SlackBot />
+                  // //<SlackBot />
                     <LandingPage
                      />
                   </div>
@@ -215,7 +215,7 @@ class App extends Component {
               render={props => {
                 return (
                   <div>
-                  <SlackBot />
+                  //<SlackBot />
                   <SignIn
                     {...props}
                     admins={this.state.admins}
@@ -232,7 +232,7 @@ class App extends Component {
               render={props => {
                 return (
                   <div>
-                  <SlackBot />
+                  //<SlackBot />
                   <SignUp
                     {...props}
                     admins={this.state.admins}
@@ -249,7 +249,7 @@ class App extends Component {
               render={props => {
                 return (
                 <div>
-                <SlackBot />
+                //<SlackBot />
                   <NavBar 
                   logout={this.logout.bind(this)}
                   /> 
@@ -269,7 +269,7 @@ class App extends Component {
               render={props => {
                 return (
                 <div>
-                <SlackBot />
+                //<SlackBot />
                   <NavBar
                     logout={this.logout.bind(this)}
 
@@ -297,7 +297,7 @@ class App extends Component {
               render={props => {
                 return (
                 <div>
-                <SlackBot />
+                //<SlackBot />
                   <NavBar
                     logout={this.logout.bind(this)}
 
@@ -342,7 +342,7 @@ class App extends Component {
               render={props => {
                 return (
                   <div>
-                  <SlackBot />
+                  //<SlackBot />
                   <EditUser
                     {...props}
                     admins={this.state.admins}
